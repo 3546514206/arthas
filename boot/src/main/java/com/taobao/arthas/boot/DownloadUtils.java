@@ -22,48 +22,50 @@ import com.taobao.arthas.common.IOUtils;
  *
  */
 public class DownloadUtils {
-    private static final String ARTHAS_VERSIONS_URL = "https://arthas.aliyun.com/api/versions";
-    private static final String ARTHAS_LATEST_VERSIONS_URL = "https://arthas.aliyun.com/api/latest_version";
+    // private static final String ARTHAS_VERSIONS_URL = "https://arthas.aliyun.com/api/versions";
+    // private static final String ARTHAS_LATEST_VERSIONS_URL = "https://arthas.aliyun.com/api/latest_version";
 
-    private static final String ARTHAS_DOWNLOAD_URL = "https://arthas.aliyun.com/download/${VERSION}?mirror=${REPO}";
+    // private static final String ARTHAS_DOWNLOAD_URL = "https://arthas.aliyun.com/download/${VERSION}?mirror=${REPO}";
+    private static final String ARTHAS_DOWNLOAD_URL = "http://localhost:7979/download/arthas-packaging-3.5.6-bin.zip";
+    // private static final String ARTHAS_DOWNLOAD_URL = "http://158.220.196.204:8000/manual/template/arthas-packaging-3.5.6-bin.zip";
 
     private static final int CONNECTION_TIMEOUT = 3000;
 
     public static String readLatestReleaseVersion() {
-        InputStream inputStream = null;
-        try {
-            URLConnection connection = openURLConnection(ARTHAS_LATEST_VERSIONS_URL);
-            inputStream = connection.getInputStream();
-            return IOUtils.toString(inputStream).trim();
-        } catch (Throwable t) {
-            AnsiLog.error("Can not read arthas version from: " + ARTHAS_LATEST_VERSIONS_URL);
-            AnsiLog.debug(t);
-        } finally {
-            IOUtils.close(inputStream);
-        }
+        // InputStream inputStream = null;
+        // try {
+        //     URLConnection connection = openURLConnection(ARTHAS_LATEST_VERSIONS_URL);
+        //     inputStream = connection.getInputStream();
+        //     return IOUtils.toString(inputStream).trim();
+        // } catch (Throwable t) {
+        //     AnsiLog.error("Can not read arthas version from: " + ARTHAS_LATEST_VERSIONS_URL);
+        //     AnsiLog.debug(t);
+        // } finally {
+        //     IOUtils.close(inputStream);
+        // }
         return null;
     }
 
     public static List<String> readRemoteVersions() {
-        InputStream inputStream = null;
-        try {
-            URLConnection connection = openURLConnection(ARTHAS_VERSIONS_URL);
-            inputStream = connection.getInputStream();
-            String versionsStr = IOUtils.toString(inputStream);
-            String[] versions = versionsStr.split("\r\n");
-
-            ArrayList<String> result = new ArrayList<String>();
-            for (String version : versions) {
-                result.add(version.trim());
-            }
-            return result;
-
-        } catch (Throwable t) {
-            AnsiLog.error("Can not read arthas versions from: " + ARTHAS_VERSIONS_URL);
-            AnsiLog.debug(t);
-        } finally {
-            IOUtils.close(inputStream);
-        }
+        // InputStream inputStream = null;
+        // try {
+        //     URLConnection connection = openURLConnection(ARTHAS_VERSIONS_URL);
+        //     inputStream = connection.getInputStream();
+        //     String versionsStr = IOUtils.toString(inputStream);
+        //     String[] versions = versionsStr.split("\r\n");
+        //
+        //     ArrayList<String> result = new ArrayList<String>();
+        //     for (String version : versions) {
+        //         result.add(version.trim());
+        //     }
+        //     return result;
+        //
+        // } catch (Throwable t) {
+        //     AnsiLog.error("Can not read arthas versions from: " + ARTHAS_VERSIONS_URL);
+        //     AnsiLog.debug(t);
+        // } finally {
+        //     IOUtils.close(inputStream);
+        // }
         return null;
     }
 

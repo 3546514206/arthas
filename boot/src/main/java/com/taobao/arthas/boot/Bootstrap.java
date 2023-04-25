@@ -73,7 +73,7 @@ public class Bootstrap {
     private Integer telnetPort;
     private Integer httpPort;
     /**
-     * @see com.taobao.arthas.core.config.Configure#DEFAULT_SESSION_TIMEOUT_SECONDS
+     *
      */
     private Long sessionTimeout;
 
@@ -474,29 +474,30 @@ public class Bootstrap {
                 localLastestVersion = versionList.get(versionList.size() - 1);
             }
 
-            String remoteLastestVersion = DownloadUtils.readLatestReleaseVersion();
-
-            boolean needDownload = false;
-            if (localLastestVersion == null) {
-                if (remoteLastestVersion == null) {
-                    // exit
-                    AnsiLog.error("Can not find Arthas under local: {} and remote repo mirror: {}", ARTHAS_LIB_DIR,
-                            bootstrap.getRepoMirror());
-                    AnsiLog.error(
-                            "Unable to download arthas from remote server, please download the full package according to wiki: https://github.com/alibaba/arthas");
-                    System.exit(1);
-                } else {
-                    needDownload = true;
-                }
-            } else {
-                if (remoteLastestVersion != null) {
-                    if (localLastestVersion.compareTo(remoteLastestVersion) < 0) {
-                        AnsiLog.info("local lastest version: {}, remote lastest version: {}, try to download from remote.",
-                                        localLastestVersion, remoteLastestVersion);
-                        needDownload = true;
-                    }
-                }
-            }
+            // String remoteLastestVersion = DownloadUtils.readLatestReleaseVersion();
+            String remoteLastestVersion = "3.6.3";
+            boolean needDownload = true;
+            // boolean needDownload = false;
+            // if (localLastestVersion == null) {
+            //     if (remoteLastestVersion == null) {
+            //         // exit
+            //         AnsiLog.error("Can not find Arthas under local: {} and remote repo mirror: {}", ARTHAS_LIB_DIR,
+            //                 bootstrap.getRepoMirror());
+            //         AnsiLog.error(
+            //                 "Unable to download arthas from remote server, please download the full package according to wiki: https://github.com/alibaba/arthas");
+            //         System.exit(1);
+            //     } else {
+            //         needDownload = true;
+            //     }
+            // } else {
+            //     if (remoteLastestVersion != null) {
+            //         if (localLastestVersion.compareTo(remoteLastestVersion) < 0) {
+            //             AnsiLog.info("local lastest version: {}, remote lastest version: {}, try to download from remote.",
+            //                             localLastestVersion, remoteLastestVersion);
+            //             needDownload = true;
+            //         }
+            //     }
+            // }
             if (needDownload) {
                 // try to download arthas from remote server.
                 DownloadUtils.downArthasPackaging(bootstrap.getRepoMirror(), bootstrap.isuseHttp(),
